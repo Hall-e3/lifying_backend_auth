@@ -1,0 +1,102 @@
+GET http://localhost:5000
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDM2MTM5OTUsImV4cCI6MTY0MzYxNDI5NSwiYXVkIjpbIjYxZjIzMmM2MjU2ZDU5OGMzNTQ3OTFkMiJdfQ.d8o3s7nxUuM3RM688IKsegq-xlgaqGpINRzueplI4Gw
+
+
+#### route is not supported by system
+
+GET http://localhost:5000/posts
+
+#### route is not supported by system
+
+GET http://localhost:5000/posts/wwo57
+
+#### create post
+
+POST http://localhost:5000/posts/create
+Content-Type: application/json
+
+{
+    "title":"Programming",
+    "creator":"pius",
+    "message":"Pius likes reading books",
+    "selectedFile":"game photo",
+    "tags":["Data Science","watching Infinite war"],
+    "likeCount":"5"
+}
+
+#### update posts
+
+PATCH http://localhost:5000/posts/update/61eeab7f49e0f9a7168e587c
+Content-Type: application/json
+
+{
+    "title":"Programming and Reading",
+    "creator":"Tumwebaze P",
+    "message":"Pius likes reading books and Programming",
+    "selectedFile":"game photo",
+    "tags":["Data Science","watching Infinite war","Python"],
+    "likeCount":"5"
+}
+
+#### delete a post
+
+DELETE http://localhost:5000/posts/delete/61eedc284fd0fc6f5d881d5d
+
+#### User registering
+
+POST http://localhost:5000/auth/register
+Content-Type: application/json
+
+{
+    "first_name":"Utoie",
+    "last_name":"Black",
+    "email":"utoieblack@gmail.com",
+    "password":"utos123",
+    "confirm_password":"utos123"
+}
+
+
+#### User login
+
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+    "email":"utoieblack@gmail.co",
+    "password":"Utoie123"
+}
+
+#### User email verification and confirmation
+POST http://localhost:5000/auth/confirm/wwo57
+
+
+#### User refresh_token
+
+POST http://localhost:5000/auth/refresh
+Content-Type: application/json
+
+{
+    "refreshTokies": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDMyNjI2NjMsImV4cCI6MTY3NDgyMDI2MywiYXVkIjpbIjYxZjIzMmM2MjU2ZDU5OGMzNTQ3OTFkMiJdfQ.unlukByTjFhWvt0MyQaumxtagnnn9e95P_CT74F5K20"
+}
+
+
+#### User account delete
+
+DELETE http://localhost:5000/auth/delete/61f232c6256d598c354791d2
+Content-Type: application/json
+
+{
+    "refreshTokies": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDMyNjI2NjMsImV4cCI6MTY3NDgyMDI2MywiYXVkIjpbIjYxZjIzMmM2MjU2ZDU5OGMzNTQ3OTFkMiJdfQ.unlukByTjFhWvt0MyQaumxtagnnn9e95P_CT74F5K20"
+}
+
+
+
+#### User logout
+
+POST http://localhost:5000/auth/logout
+Content-Type: application/json
+
+{
+    "refreshTokies": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDM2MTM5OTUsImV4cCI6MTY3NTE3MTU5NSwiYXVkIjpbIjYxZjIzMmM2MjU2ZDU5OGMzNTQ3OTFkMiJdfQ.DVM6y7J1RARm3y12wi6KMCLhJQk_NXM02jApRLSqNuc"
+}
+
