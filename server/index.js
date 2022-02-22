@@ -1,11 +1,11 @@
 import express from "express";
+import mongoose from "mongoose";
 import cors from "cors";
 import morgan from "morgan";
 import dotenv from "dotenv";
-import mongoose from "mongoose";
 import createErrors from "http-errors";
-import postRoutes from "./routes/posts.routes.js";
-import userRoutes from "./routes/users.routes.js";
+import postsRoutes from "./api/routes/posts.js";
+import userRoutes from "./api/routes/users.routes.js";
 import { verifyAccessToken } from "./helpers/jwt.accessTokens.js";
 dotenv.config();
 
@@ -13,48 +13,46 @@ const app = express();
 app.use(express.json({ extended: true, limit: "30mb" }));
 app.use(express.urlencoded({ extended: true, limit: "30mb" }));
 app.use(cors());
+app.use(morgan("dev"));
 app.use("/auth", userRoutes);
-app.use("/posts", postRoutes);
 app.get("/", verifyAccessToken, (req, res, next) => {
   res.send("Hey welcome to lify.com ");
 });
-app.use(morgan("dev"));
-// const corsOptions ={
-//   origin:'http://localhost:3000',
-//   credentials:true,            //access-control-allow-credentials:true
-//   optionSuccessStatus:200
-// }
-
+app.use("/posts", postsRoutes);
 app.use(async (req, res, next) => {
+  //   const error = new Error("Not Found");
+  //   error.status = 404;
+  //   next(error);
   next(createErrors.NotFound("This route does not exist"));
 });
 
-app.use((err, req, res, next) => {
-  res.status = err.status || 500;
-  res.send({
+app.use((error, req, res, next) => {
+  res.status(error.status || 500);
+  res.json({
     error: {
-      status: err.status || 500,
-      message: err.message,
+      message: error,
+      status: error.status || 500,
     },
   });
 });
-
-const { MONGO_DB_URL, PORT, DB_NAME } = process.env;
+const { MONGO_URL, PORT, DB_NAME } = process.env;
 mongoose
-  .connect(MONGO_DB_URL, {
+  .connect(MONGO_URL, {
     dbName: DB_NAME,
     useNewUrlParser: true,
+    useUnifiedTopology: true,
   })
   .then(() => {
     app.listen(PORT, () => {
-      console.log(`Server running successfully on ${PORT} .....`);
+      console.log(`Backend running on ${PORT}..... `);
     });
   })
   .catch((error) => {
-    console.log("Server failed to run successfully");
-    console.log(error.message);
+    console.log(error);
+    console.log("Backend failed isn't running.....");
     process.exit(1);
   });
+
 mongoose.connection.on("connection", () => {
-  console.log("Mongoose connection to db is successfull");
+  console.log("Mongoose connection to db is very successfully");
 });

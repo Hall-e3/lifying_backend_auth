@@ -45,6 +45,9 @@ export const userEmailVerification = async (req, res, next) => {
     if (!user) throw createErrors.NotFound("User does not exists");
     user.status = "Active";
     await user.save();
+    if (user.status === "Active") {
+      res.redirect("/confirm");
+    }
     res.send(user);
   } catch (error) {
     next(error);
@@ -77,8 +80,8 @@ export const login = async (req, res, next) => {
     }
     res.send(user);
   } catch (error) {
-    if (error.isJoi === true) error.status = 422
-      // return next(createErrors.BadRequest());
+    if (error.isJoi === true) error.status = 422;
+    // return next(createErrors.BadRequest());
     next(error);
   }
 };

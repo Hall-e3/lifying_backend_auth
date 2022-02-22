@@ -18,10 +18,10 @@ export const sendConfirmationEmail = async (name, email, confirmation_code) => {
       to: email,
       subject: "Please confirm your account",
       html: `<div>
-      <h1>Email Confirmation</h1>
+      <h1>Your Email Confirmation code : ${confirmation_code}</h1>
       <h2>Hello ${name}</h2>
       <p>Thank you for subscribing lify.com. Please confirm your email by clicking on the following link!</p>
-      <a href=http://localhost:5000/auth/confirm/${confirmation_code}> Click here</a>
+      <a href=http://localhost:3000/auth/confirm> Click here</a>
       </div>`,
     })
     .catch((error) => console.log(error.message));

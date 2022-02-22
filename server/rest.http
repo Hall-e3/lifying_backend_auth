@@ -62,12 +62,12 @@ POST http://localhost:5000/auth/login
 Content-Type: application/json
 
 {
-    "email":"utoieblack@gmail.co",
-    "password":"Utoie123"
+    "email":"utoieblack@gmail.com",
+    "password":"utos123"
 }
 
 #### User email verification and confirmation
-POST http://localhost:5000/auth/confirm/wwo57
+POST http://localhost:5000/auth/confirm/21mbq
 
 
 #### User refresh_token
