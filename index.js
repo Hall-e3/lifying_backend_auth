@@ -35,7 +35,8 @@ app.use((error, req, res, next) => {
     },
   });
 });
-const { MONGO_URL, PORT, DB_NAME } = process.env;
+const { MONGO_URL, DB_NAME } = process.env;
+const PORT = process.env.PORT || 5000;
 mongoose
   .connect(MONGO_URL, {
     dbName: DB_NAME,
