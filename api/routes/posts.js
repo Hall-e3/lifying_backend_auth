@@ -12,8 +12,8 @@ import { verifyAccessToken } from "../../helpers/jwt.accessTokens.js";
 
 const router = express.Router();
 
-router.get("/", getPosts);
-router.post("/", verifyAccessToken, createPost);
+router.get("", getPosts);
+router.post("", verifyAccessToken, createPost);
 router.get("/:id", verifyAccessToken, getPost);
 router.patch("/:id", verifyAccessToken, updatePost);
 router.delete("/:id", verifyAccessToken, deletePost);

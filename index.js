@@ -15,10 +15,11 @@ app.use(express.urlencoded({ extended: true, limit: "30mb" }));
 app.use(cors());
 app.use(morgan("dev"));
 app.use("/auth", userRoutes);
+app.use("/posts", postsRoutes);
 app.get("/", verifyAccessToken, (req, res, next) => {
   res.send("Hey welcome to lify.com ");
 });
-app.use("/posts", postsRoutes);
+
 app.use(async (req, res, next) => {
   //   const error = new Error("Not Found");
   //   error.status = 404;
@@ -29,10 +30,8 @@ app.use(async (req, res, next) => {
 app.use((error, req, res, next) => {
   res.status(error.status || 500);
   res.json({
-    error: {
-      message: error,
-      status: error.status || 500,
-    },
+    message: error,
+    status: error.status || 500,
   });
 });
 const { MONGO_URL, DB_NAME } = process.env;

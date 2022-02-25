@@ -1,18 +1,27 @@
+
 GET http://localhost:5000
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDM2MTM5OTUsImV4cCI6MTY0MzYxNDI5NSwiYXVkIjpbIjYxZjIzMmM2MjU2ZDU5OGMzNTQ3OTFkMiJdfQ.d8o3s7nxUuM3RM688IKsegq-xlgaqGpINRzueplI4Gw
 
 
-#### route is not supported by system
+#### get post by id url
 
 GET http://localhost:5000/posts
 
-#### route is not supported by system
+#### get post by id url
 
-GET http://localhost:5000/posts/wwo57
+GET http://localhost:5000/posts/61eeab7f49e0f9a7168e587c
 
+
+
+
+#### like post url
+
+PATCH http://localhost:5000/posts/61eeab7f49e0f9a7168e587c/likePost
+
+m
 #### create post
 
-POST http://localhost:5000/posts/create
+POST http://localhost:5000/posts
 Content-Type: application/json
 
 {
@@ -26,7 +35,7 @@ Content-Type: application/json
 
 #### update posts
 
-PATCH http://localhost:5000/posts/update/61eeab7f49e0f9a7168e587c
+PATCH http://localhost:5000/posts/61eeab7f49e0f9a7168e587c
 Content-Type: application/json
 
 {
@@ -40,7 +49,7 @@ Content-Type: application/json
 
 #### delete a post
 
-DELETE http://localhost:5000/posts/delete/61eedc284fd0fc6f5d881d5d
+DELETE http://localhost:5000/posts/61eedc284fd0fc6f5d881d5d
 
 #### User registering
 

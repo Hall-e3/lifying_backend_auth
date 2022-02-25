@@ -25,10 +25,8 @@ export const register = async (req, res, next) => {
     newUser.confirmation_code = emailConfirmationCode;
     const name = ` ${newUser.last_name} ${newUser.first_name}`;
     await newUser.save((error) => {
-      if (error) res.status(500).send({ message: error });
-      res.send({
-        message: "User was registered successfully!, please check your email",
-      });
+      if (error) res.status(500).send(error.message);
+      res.send("User was registered successfully!, please check your email");
       sendConfirmationEmail(name, newUser.email, newUser.confirmation_code);
     });
     // res.send(newUser);
